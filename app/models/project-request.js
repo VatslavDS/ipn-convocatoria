@@ -15,14 +15,11 @@ var ReferencesSchema = new Schema({
 var DocumentSchema = new Schema({
 	antecedentes: String,
 	justificacion: String,
-	justificacion: String,
 	metodologia: String,
 	propuesta: String,
 	resultados: String,
 	conclusiones: String,
-	referencias: [ReferencesSchema],
-	url_documento : String,
-	url_anexo : String
+	referencias: [ReferencesSchema]
 });
 
 var RequestSchema = new Schema({
@@ -37,4 +34,4 @@ var RequestSchema = new Schema({
 	url_anexo : String
 });
 
-mongoose.model('Requests', RequestSchema);
+mongoose.model('Request', RequestSchema);

@@ -1,0 +1,27 @@
+{
+	"nombre_proyecto": "Nuevo mundo",
+	"institucion": "IPN",
+	"categoria": "Nueva",
+	"eje_tematico": "Inovacion",
+	"participantes": [{
+		"nombre": "Vanelo",
+		"comprobante": "87 rh82"
+	}, {
+		"nombre": "Jorge",
+		"comprobante": "87 rhyy82"
+	}],
+	"resumen": "iusdfhiaufhaisudfhi",
+	"documento": [{
+		"antecedentes": "isuhdfis",
+		"justificacion": "ifusdhfi",
+		"metodologia": "Nueva",
+		"propuesta": "Nueva propuesta",
+		"resultados": "Los resultados",
+		"conclusiones": "Final",
+		"referencias": [{
+			"referencia": "Del mas allá"
+		}]
+	}],
+	"url_documento": "ww.dhusudfhu",
+	"url_anexo": "fusdhifsudfi"
+}

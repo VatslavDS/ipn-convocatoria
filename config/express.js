@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
 var swig = require('swig');
+var  multer = require('multer');
+
 
 module.exports = function(app, config) {
   var env = process.env.NODE_ENV || 'development';
@@ -30,6 +32,9 @@ module.exports = function(app, config) {
   }));
   app.use(cookieParser());
   app.use(compress());
+
+app.use(multer({dest:'./public/uploads/'}).single('photo'));
+  
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
