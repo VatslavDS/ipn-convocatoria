@@ -4,34 +4,80 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var CompetitorSchema = new Schema({
-	nombre: String,
-	comprobante : String
+	nombre: {
+	   type: String,
+	   required: true,
+	   min: 2,
+	   max: 60
+	},
+	categoria: {
+	    type: String,
+	    required : true
+	},
+	comprobante : {
+	    type: String,
+	    required: true
+	},
+	institucion: {
+	    type: String
+	},
+	plantel : {
+	    type: String,
+	    required: true
+	}
 });
 
 var ReferencesSchema = new Schema({
-	referencia: String
+	referencia: {
+	    type: String,
+	    required: true
+	}
 });
 
 var DocumentSchema = new Schema({
-	antecedentes: String,
-	justificacion: String,
-	metodologia: String,
-	propuesta: String,
-	resultados: String,
-	conclusiones: String,
+	antecedentes: {
+	    type: String
+	},
+	justificacion: {
+	    type: String
+	},
+	metodologia: {
+	    type: String
+	},
+	propuesta: {
+	    type: String
+	},
+	resultados: {
+	    type: String
+	},
+	conclusiones: {
+	    type: String
+	},
 	referencias: [ReferencesSchema]
 });
 
 var RequestSchema = new Schema({
-	nombre_proyecto : String,
-	institucion : String,
-	categoria : String,
-	eje_tematico : String,
+	nombre_proyecto : {
+	    type: String,
+	    required: true
+	},
+	eje_tematico : {
+	    type: String,
+	    required: true
+	},
 	participantes: [CompetitorSchema],
-	resumen: String,
+	resumen: {
+	    type: String,
+	    required: true
+	},
 	documento: DocumentSchema,
-        url_documento : String,
-	url_anexo : String
+        url_documento : {
+	    type: String,
+	    required: false 
+	},
+	url_anexo : {
+	    type: String
+	}
 });
 
 mongoose.model('Request', RequestSchema);
