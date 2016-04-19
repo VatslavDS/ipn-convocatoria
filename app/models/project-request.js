@@ -57,7 +57,7 @@ var DocumentSchema = new Schema({
 });
 
 var RequestSchema = new Schema({
-	nombre_proyecto : {
+	nombre_del_proyecto : {
 	    type: String,
 	    required: true
 	},
@@ -72,8 +72,7 @@ var RequestSchema = new Schema({
 	},
 	documento: DocumentSchema,
         url_documento : {
-	    type: String,
-	    required: false 
+	    type: String
 	},
 	url_anexo : {
 	    type: String

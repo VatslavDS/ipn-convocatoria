@@ -624,17 +624,52 @@ function registrar() {
     "<br><b>Archivo del Proyecto : </b>" + archivo_proyecto +
     "<br><b>URL Anexo : </b>" + anexo;
 
-    console.log(comprobante_participante_1);
-    var a = {
-	files: comprobante_participante_1
-    };
-    console.log(a);
-    /*
-    $.post('/form-uno', a, function(data) {
-	    console.log(data);
+    var fd = new FormData();
+    fd.append("archivo_proyecto", archivo_proyecto[0]);
+    
+    fd.append("comprobante_participante_1", comprobante_participante_1[0]); 
+    fd.append("comprobante_participante_2", comprobante_participante_2[0]); 
+    fd.append("comprobante_participante_3", comprobante_participante_3[0]);
+
+
+    fd.append("nombre_del_proyecto",nombre_del_proyecto);
+    fd.append("eje_tematico",eje_tematico);
+    fd.append("nombre_del_participante_1",nombre_del_participante_1);
+    fd.append("categoria_participante_1", categoria_participante_1);
+    fd.append("institucion_participante_1", institucion_participante_1);
+    fd.append("plantel_participante_1", plantel_participante_1);
+    fd.append("nombre_del_participante_2", nombre_del_participante_2);
+    fd.append("categoria_participante_2", categoria_participante_2);
+    fd.append("institucion_participante_2", institucion_participante_2); 
+    fd.append("plantel_participante_2", plantel_participante_2);
+    fd.append("nombre_del_participante_3", nombre_del_participante_3);
+    fd.append("categoria_participante_3", categoria_participante_3);
+    fd.append("institucion_participante_3", institucion_participante_3);
+    fd.append("plantel_participante_3",plantel_participante_3);
+    fd.append("comprobante_participante_3", comprobante_participante_3);
+    fd.append("resumen", resumen);
+    fd.append("antecedentes", antecedentes);
+    fd.append("justificacion", justificacion);
+    fd.append("metodologia", metodologia);
+    fd.append("propuesta", propuesta);
+    fd.append("resultados", resultados);
+    fd.append("conclusiones", conclusiones);
+    fd.append("referencia_1", referencia_1);
+    fd.append("anexo", anexo);
+
+
+
+
+
+    $.ajax({
+        url: '/form-uno',
+        data: fd,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function(data){
+            console.log(data);
+        }
     });
-    */
-
-
 
 }

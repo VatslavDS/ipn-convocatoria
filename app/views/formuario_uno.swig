@@ -33,7 +33,8 @@
 <!-- CONTENEDOR COMBO !-->
 <div id="contenedor_combo">
 <div class="contenedor_campos">
-<b>Nombre del Proyecto:</b><br>
+<a id="hola">hola</a>
+<b>Nombreww del Proyecto:</b><br>
 <div id="error_1">* No se permiten caracteres especiales en el nombre de proyecto.</div>
 <input type="text" name="nombre_del_proyecto" id="nombre_del_proyecto" onKeyDown="validar_combo_1();" 
  class="input_text" size="50" maxlength="50" onKeyUp="validar_combo_1();"  required/><br>

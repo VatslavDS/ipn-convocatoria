@@ -6,16 +6,17 @@ var express = require('express'),
   fs = require('fs'),
   mime = require('mime'),
   crypto = require('crypto'),
+  mom = require('moment'),
   q = require('q'),
   Request = mongoose.model('Request');
 
-var storage =   multer.diskStorage({
+var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    var destination = './public/uploads/' + req.body.nombre_proyecto;
-    if (!fs.existsSync(destination)){
-            fs.mkdirSync(destination);
+    var destination_file = './public/uploads/' + mom().unix();
+    if (!fs.existsSync(destination_file)){
+            fs.mkdirSync(destination_file);
     }
-        callback(null, destination);
+        callback(null, destination_file);
   },
   fileFilter: function (req, file, cb) {
     if (path.extension(file.originalname) !== '.pdf') {
@@ -51,8 +52,9 @@ router.get('/test', function(req, res, next) {
 });
 
 
-router.post('/form-uno', function(req, res, next) {
-/*	
+router.post('/form-uno', multer({storage: storage}).any(), function(req, res, next) {
+    var files = req.files;
+    var body = req.body;
     function saveFile(req, res) {
 	var deferred = q.defer();		
 	upload(req, res, function(err) {
@@ -68,43 +70,43 @@ router.post('/form-uno', function(req, res, next) {
 
     saveFile(req, res).then(function() {
 	var proyecto = {
-	            "nombre_proyecto": req.body.nombre_proyecto,
-	            "eje_tematico": req.body.eje_tematico,
+	            "nombre_del_proyecto": body.nombre_del_proyecto,
+	            "eje_tematico": body.eje_tematico,
 	            "participantes": [{
-			"nombre": req.body.nombre_del_participante1,
-			"categoria": req.body.categoria_participante1,
-	        	"institucicon": req.body.institucion_participante1,
-			"plantel" : req.body.plantel_participante1,
-			"comprobante": req.files.comprobante1[0].destination + "/" + req.files.comprobante1[0].originalname,
+			"nombre": body.nombre_del_participante_1,
+			"categoria": body.categoria_participante_1,
+	        	"institucicon": body.institucion_participante_1,
+			"plantel" : body.plantel_participante_1,
+			"comprobante": files[0].destination + "/" + files[0].originalname,
 		}, {
-			"nombre": req.body.nombre_del_participante2,
-			"categoria": req.body.categoria_participante2,
-	        	"institucicon": req.body.institucion_participante2,
-			"plantel" : req.body.plantel_participante2,
-			"comprobante": req.files.comprobante2[0].destination + "/" + req.files.comprobante1[0].originalname,
+			"nombre": body.nombre_del_participante_2,
+			"categoria": body.categoria_participante_2,
+	        	"institucicon": body.institucion_participante_2,
+			"plantel" : body.plantel_participante_2,
+			"comprobante": files[1].destination + "/" + files[1].originalname,
 		}, {
-			"nombre": req.body.nombre_del_participante3,
-			"categoria": req.body.categoria_participante3,
-	        	"institucicon": req.body.institucion_participante3,
-			"plantel" : req.body.plantel_participante3,
-			"comprobante": req.files.comprobante3[0].destination + "/" + req.files.comprobante1[0].originalname,
+			"nombre": body.nombre_del_participante_3,
+			"categoria": body.categoria_participante_3,
+	        	"institucicon": body.institucion_participante_3,
+			"plantel" : body.plantel_participante_3,
+			"comprobante": files[2].destination + "/" + files[2].originalname,
 		}],
-		"resumen": req.body.resumen,
+		"resumen": body.resumen,
 		"documento": [{
-			"antecedentes": req.body.antecedentes,
-			"justificacion": req.body.justificacion,
-			"metodologia": req.body.metodologia,
-			"propuesta": req.body.propuesta,
-			"resultados": req.body.resultados,
-			"conclusiones": req.body.conclusiones,
+			"antecedentes": body.antecedentes,
+			"justificacion": body.justificacion,
+			"metodologia": body.metodologia,
+			"propuesta": body.propuesta,
+			"resultados": body.resultados,
+			"conclusiones": body.conclusiones,
 			"referencias": [{
-				"referencia": req.body.bibliografia
+				"referencia": body.referencia_1
 			}]
 		}],
-		"url_documento": req.files.archivo_proyecto[0].destination + "/" + req.files.comprobante1[0].originalname,
 		"url_anexo": req.body.anexo
 		};
 	var request = new Request(proyecto); 
+
 	request.save(function(err, doc){
 		if(err) {console.log(err); return res.send("Error");}
 		res.send("ok");
@@ -112,9 +114,6 @@ router.post('/form-uno', function(req, res, next) {
     }).catch(function(err) {
 	    console.log(err);
     });
-    */
-    res.send(req.body);
-    res.send(req.files);
 });
 
 
