@@ -11,8 +11,11 @@ var express = require('express'),
 
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    var currentdate = new Date(); 
-    callback(null, './public/uploads');
+    var destination = './public/uploads/' + req.body.nombre_proyecto;
+    if (!fs.existsSync(destination)){
+            fs.mkdirSync(destination);
+    }
+        callback(null, destination);
   },
   fileFilter: function (req, file, cb) {
     if (path.extension(file.originalname) !== '.pdf') {
@@ -37,7 +40,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
     Request.find(function(err, docs) {
 	    if(err) res.send("ok");
-	    res.render('formuario_uno', {
+	    res.render('formulario_final', {
                 title: 'Generator-Express MVC', requests : docs		
         });
     });
@@ -49,6 +52,7 @@ router.get('/test', function(req, res, next) {
 
 
 router.post('/form-uno', function(req, res, next) {
+/*	
     function saveFile(req, res) {
 	var deferred = q.defer();		
 	upload(req, res, function(err) {
@@ -63,7 +67,6 @@ router.post('/form-uno', function(req, res, next) {
     };
 
     saveFile(req, res).then(function() {
-	    console.log(req.body);
 	var proyecto = {
 	            "nombre_proyecto": req.body.nombre_proyecto,
 	            "eje_tematico": req.body.eje_tematico,
@@ -109,6 +112,9 @@ router.post('/form-uno', function(req, res, next) {
     }).catch(function(err) {
 	    console.log(err);
     });
+    */
+    res.send(req.body);
+    res.send(req.files);
 });
 
 

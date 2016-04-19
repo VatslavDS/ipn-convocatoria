@@ -1,19 +1,15 @@
 {% extends 'layout.swig' %}
 {% block content %}
 
-<body>
-	<script src="js/IPN-formulario.js"></script>
-
-
 <!-- LOGOS DE IPN & SEP !-->
 <div id="header">
-	<span id="logo_sep"><img src="/img/logo-sep-horizontal.jpg" id="logo_sep"></span>
-	<span id="logo_ipn"><img src="/img/logo-ipn-horizontal.jpg" id="logo_ipn"></span>
+	<span id="logo_sep"><img src="img/logo-sep-horizontal.jpg" id="logo_sep"></span>
+	<span id="logo_ipn"><img src="img/logo-ipn-horizontal.jpg" id="logo_ipn"></span>
 </div>
 
 <!-- HEADER TITULO !-->
 <div id="header_title">
-	<span id="head_title"><img src="/img/img-head-title.png" id="head_title"></span>	
+	<span id="head_title"><img src="img/img-head-title.png" id="head_title"></span>	
 </div>
 
 
@@ -76,7 +72,8 @@
 <div id="contenedor_combo">
 <div class="contenedor_campos">
 
-{% include 'combo-participantes.html' %}
+{% include 'combo-participantes.swig' %}                                                             
+
 
 
 </div>
@@ -153,37 +150,39 @@ los proyectos ganadores en diversos medios.<br>
 <ol>
   <li>Antecedentes.</li>
   <div id="error_9">* No se permiten caracteres especiales. </div>
-  <textarea name="antecedentes" id="antecedentes" rows="2" cols="80" maxlength="400" onKeyUp="validar_combo_4()" 
-  placeholder="Máximo de 400 Palabras" required></textarea>
+  <textarea name="antecedentes" id="antecedentes" rows="2" cols="80" maxlength="400" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="Máximo de 400 Palabras" required></textarea>
   <li>Justificación (planteamiento del problema).</li>
   <div id="error_10">* No se permiten caracteres especiales. </div>
-  <textarea name="justificacion" id="justificacion" rows="2" cols="80" maxlength="100" onKeyUp="validar_combo_4()" 
-  placeholder="Máximo de 100 Palabras" required></textarea>
+  <textarea name="justificacion" id="justificacion" rows="2" cols="80" maxlength="100" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="Máximo de 100 Palabras" required></textarea>
   <li>Metodología.</li>
   <div id="error_11">* No se permiten caracteres especiales. </div>
-  <textarea name="metodologia" id="metodologia" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()" 
-  placeholder="Máximo de 200 Palabras" required></textarea>
+  <textarea name="metodologia" id="metodologia" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="Máximo de 200 Palabras" required></textarea>
   <li>Propuesta.</li>
   <div id="error_12">* No se permiten caracteres especiales. </div>
-  <textarea name="propuesta" id="propuesta" rows="2" cols="80" minlength="800" maxlength="1000" onKeyUp="validar_combo_4()" 
-  placeholder="800 - 1000 Palabras" required></textarea>
+  <textarea name="propuesta" id="propuesta" rows="2" cols="80" minlength="800" maxlength="1000" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="800 - 1000 Palabras" required></textarea>
   <li>Resultados e impacto esperados de la propuesta.</li>
   <div id="error_13">* No se permiten caracteres especiales. </div>
-  <textarea name="resultados" id="resultados" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()" 
-  placeholder="Máximo de 200 Palabras" required></textarea>
+  <textarea name="resultados" id="resultados" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="Máximo de 200 Palabras" required></textarea>
   <li>Conclusiones.</li>
   <div id="error_14">* No se permiten caracteres especiales. </div>
-  <textarea name="conclusiones" id="conclusiones" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()" 
-  placeholder="Máximo de 200 Palabras" required></textarea>
+  <textarea name="conclusiones" id="conclusiones" rows="2" cols="80" maxlength="200" onKeyUp="validar_combo_4()"
+  onKeyDown="validar_combo_4()" placeholder="Máximo de 200 Palabras" required></textarea>
   <li>
   <div id="dynamicInput">
-		Referencia Bibliográfica 1: <b>(en formato APA)</b> <input type="text" name="referencia_1" size="45" required>
+		Referencia Bibliográfica 1: <b>(en formato APA)</b> <input type="text" id="referencia_1"
+    onKeyUp="validar_combo_4()" onKeyDown="validar_combo_4()"size="45" required>
   </div>
   <input type="button" value="+" onClick="addInput('dynamicInput');">
   </li>
 </ol>  
 <b>Subir Archivo:</b>
-<input type="file" name="archivo_proyecto"><br>
+<input type="file" id="archivo_proyecto" required><br>
+<button id="subir_archivo" onClick="validar_combo_4()">Subir</button><br><br>
 
 
 </div>
@@ -217,13 +216,19 @@ los proyectos ganadores en diversos medios.<br>
 <div id="contenedor_combo">
 <div class="contenedor_campos">
 
+
+<div id="anexo">
 <b>Incluir en caso de que los participantes cuenten con material audiovisual que apoyen su propuesta:</b><br>
 URL:
-<input type="text" name="anexo" id="url" maxlength="100" pattern="http?://.+" class="input_text" size="80"/><br>
+<input type="text" name="anexo" id="url" maxlength="100" pattern="https?://.+" class="input_text" size="80"/><br>
+</div>
+
 
 <div id="datos"></div>
-
 </div>
+
+
+
 <!-- CONTENEDOR DE BOTONES !-->
 <div id="botones">
 <button id="boton_anterior_4" onclick="anterior_4();">Anterior</button>
@@ -238,6 +243,4 @@ URL:
 
 
 </form>
-
-</body>
-{% endblock %}
+{% endblock %} 
