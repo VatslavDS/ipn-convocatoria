@@ -1,3 +1,6 @@
-node_modules/
+node_modules
+bower_components
 public/components
-.sass-cache
+.DS_STORE
+.build
+dummy_data
