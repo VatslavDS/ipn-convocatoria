@@ -13,6 +13,7 @@ var express = require('express'),
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
     var destination_file = './public/uploads/' + mom().unix();
+    console.log(destination_file);
     if (!fs.existsSync(destination_file)){
             fs.mkdirSync(destination_file);
     }
@@ -69,6 +70,7 @@ router.post('/form-uno', multer({storage: storage}).any(), function(req, res, ne
     };
 
     saveFile(req, res).then(function() {
+       console.log(body);
 	var proyecto = {
 	            "nombre_del_proyecto": body.nombre_del_proyecto,
 	            "eje_tematico": body.eje_tematico,
@@ -99,6 +101,7 @@ router.post('/form-uno', multer({storage: storage}).any(), function(req, res, ne
 			"propuesta": body.propuesta,
 			"resultados": body.resultados,
 			"conclusiones": body.conclusiones,
+                        "archivo_proyecto": body.archivo_proyecto,
 			"referencias": [{
 				"referencia": body.referencia_1
 			}]

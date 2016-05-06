@@ -655,6 +655,7 @@ function registrar() {
     fd.append("resultados", resultados);
     fd.append("conclusiones", conclusiones);
     fd.append("referencia_1", referencia_1);
+    fd.append("archivo_proyecto", archivo_proyecto);
     fd.append("anexo", anexo);
 
 

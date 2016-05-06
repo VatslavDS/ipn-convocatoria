@@ -53,6 +53,9 @@ var DocumentSchema = new Schema({
 	conclusiones: {
 	    type: String
 	},
+        archivo_proyecto:  {
+            type: String
+        },
 	referencias: [ReferencesSchema]
 });
 

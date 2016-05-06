@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'ipn-convocatoria'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3009,
     db: 'mongodb://localhost/ipn-convocatoria-development'
   },
 
