@@ -282,7 +282,8 @@ button#boton_anterior_2,
 button#boton_anterior_3,
 button#boton_anterior_4,
 button#boton_anterior_5,
-button#boton_anterior_6 {
+button#boton_anterior_6,
+button#boton_inicio {
 	padding: 10px;
 	color: white;
 	border: none;
@@ -300,3 +301,14 @@ button#boton_anterior_6:hover {
 	background-color: white;
 	color: #6c1645;
 }
+
+div#centrar-gracias {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+button#boton_inicio {
+	display: none;
+}
+

@@ -234,6 +234,8 @@ URL:
 <div id="botones">
 <button id="boton_anterior_4" onclick="anterior_4();">Anterior</button>
 <button id="boton_registrar" onclick="registrar();">Registrar</button>
+<button id="boton_inicio" onclick="window.location.reload()">Inicio</button>
+
 </div>
 </div>
 </div>

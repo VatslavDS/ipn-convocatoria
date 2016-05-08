@@ -73,7 +73,7 @@ var RequestSchema = new Schema({
 	    type: String,
 	    required: true
 	},
-	documento: DocumentSchema,
+	documento: [DocumentSchema],
         url_documento : {
 	    type: String
 	},

@@ -441,6 +441,7 @@ function validar_combo_3() {
 
 }
 
+
 function validar_combo_4() {
     antecedentes = $('#antecedentes').val();
     justificacion = $('#justificacion').val();
@@ -448,6 +449,7 @@ function validar_combo_4() {
     propuesta = $('#propuesta').val();
     resultados = $('#resultados').val();
     conclusiones = $('#conclusiones').val();
+    referencias = "";
     referencia_1 = "";
     referencia_2 = "";
     referencia_3 = "";
@@ -513,9 +515,96 @@ function validar_combo_4() {
     }
 
     /* OBTENIENDO BIBLIOGRAFIAS */
-    if ( $('#referencia_1').val() != "" ) {
-        referencia_1 = $('#referencia_1').val();
-        campo_7 = "ok";
+    if ( $('#referencia_1').val() !== "" ) {
+	 referencia_1 = $('#referencia_1').val();
+     referencias = referencia_1;
+        if ( $('#referencia_2').val() !== "" ) {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencias = referencia_1 + referencia_2;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" ) {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" ) {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" && $('#referencia_6').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencia_6 = " , " + $('#referencia_6').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5 + referencia_6;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" && $('#referencia_6').val() !== "" && $('#referencia_7').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencia_6 = " , " + $('#referencia_6').val();
+        	referencia_7 = " , " + $('#referencia_7').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5 + referencia_6 + referencia_7;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" && $('#referencia_6').val() !== "" && $('#referencia_7').val() !== "" &&
+        	 $('#referencia_8').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencia_6 = " , " + $('#referencia_6').val();
+        	referencia_7 = " , " + $('#referencia_7').val();
+        	referencia_8 = " , " + $('#referencia_8').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5 + 
+        	referencia_6 + referencia_7 + referencia_8;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" && $('#referencia_6').val() !== "" && $('#referencia_7').val() !== "" &&
+        	 $('#referencia_8').val() !== "" && $('#referencia_9').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencia_6 = " , " + $('#referencia_6').val();
+        	referencia_7 = " , " + $('#referencia_7').val();
+        	referencia_8 = " , " + $('#referencia_8').val();
+        	referencia_9 = " , " + $('#referencia_9').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5 + 
+        	referencia_6 + referencia_7 + referencia_8 + referencia_9;
+        }
+        if ( $('#referencia_2').val() !== "" && $('#referencia_3').val() !== "" && $('#referencia_4').val() !== "" &&
+        	 $('#referencia_5').val() !== "" && $('#referencia_6').val() !== "" && $('#referencia_7').val() !== "" &&
+        	 $('#referencia_8').val() !== "" && $('#referencia_9').val() !== "" && $('#referencia_10').val() !== "") {
+        	referencia_2 = " , " + $('#referencia_2').val();
+        	referencia_3 = " , " + $('#referencia_3').val();
+        	referencia_4 = " , " + $('#referencia_4').val();
+        	referencia_5 = " , " + $('#referencia_5').val();
+        	referencia_6 = " , " + $('#referencia_6').val();
+        	referencia_7 = " , " + $('#referencia_7').val();
+        	referencia_8 = " , " + $('#referencia_8').val();
+        	referencia_9 = " , " + $('#referencia_9').val();
+        	referencia_10 = " , " + $('#referencia_10').val();
+        	referencias = referencia_1 + referencia_2 + referencia_3 + referencia_4 + referencia_5 + 
+        	referencia_6 + referencia_7 + referencia_8 + referencia_9 + referencia_10;
+        }
+        
+    campo_7 = "ok";
+
     }
 
 
@@ -594,35 +683,8 @@ function registrar() {
     anexo = $('#url').val();
    }
 
-    document.getElementById('anexo').style.display = 'none';
-    document.getElementById('datos').innerHTML = 
-    "<b>RESULTADO:</b><br> <b>Nombre del Proyecto : </b>" + nombre_del_proyecto +
-    "<br><b>Eje Temático : </b>" + eje_tematico +
-    "<br><b>Nombre de Participante 1 : </b>" + nombre_del_participante_1 +
-    "<br><b>Categoria : </b>" + categoria_participante_1 +
-    "<br><b>Institucion : </b>" + institucion_participante_1 +
-    "<br><b>Plantel : </b>" + plantel_participante_1 +
-    "<br><b>Comprobante : </b>" + comprobante_participante_1 +
-    "<br><b>Nombre de Participante 2 : </b>" + nombre_del_participante_2 +
-    "<br><b>Categoria : </b>" + categoria_participante_2 +
-    "<br><b>Institucion : </b>" + institucion_participante_2 +
-    "<br><b>Plantel : </b>" + plantel_participante_2 +
-    "<br><b>Comprobante : </b>" + comprobante_participante_2 +
-    "<br><b>Nombre de Participante 3 : </b>" + nombre_del_participante_3 +
-    "<br><b>Categoria : </b>" + categoria_participante_3 +
-    "<br><b>Institucion : </b>" + institucion_participante_3 +
-    "<br><b>Plantel : </b>" + plantel_participante_3 +
-    "<br><b>Comprobante : </b>" + comprobante_participante_3 +
-    "<br><b>Resumen : </b>" + resumen +
-    "<br><b>Antecedentes : </b>" + antecedentes +
-    "<br><b>Justificación : </b>" + justificacion +
-    "<br><b>Metodología : </b>" + metodologia +
-    "<br><b>Propuesta : </b>" + propuesta +
-    "<br><b>Resultados : </b>" + resultados +
-    "<br><b>Conclusiones : </b>" + conclusiones +
-    "<br><b>Referencias : </b>" + referencia_1 +
-    "<br><b>Archivo del Proyecto : </b>" + archivo_proyecto +
-    "<br><b>URL Anexo : </b>" + anexo;
+
+
 
     var fd = new FormData();
     fd.append("archivo_proyecto", archivo_proyecto[0]);
@@ -654,10 +716,15 @@ function registrar() {
     fd.append("propuesta", propuesta);
     fd.append("resultados", resultados);
     fd.append("conclusiones", conclusiones);
-    fd.append("referencia_1", referencia_1);
-    fd.append("archivo_proyecto", archivo_proyecto);
+    fd.append("referencias", referencias);
+    fd.append("archivo_proyecto", $('#archivo_proyecto').val());
     fd.append("anexo", anexo);
 
+document.getElementById('anexo').style.display = 'none';
+    document.getElementById('boton_registrar').style.display = 'none';
+    document.getElementById('boton_inicio').style.display = 'block'; 
+    document.getElementById('boton_anterior_4').style.display = 'none';  
+    document.getElementById('datos').innerHTML = "<div id='centrar-gracias'> Gracias por registrarte.</div>"
 
 
 
