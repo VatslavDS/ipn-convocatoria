@@ -8,8 +8,7 @@ var express = require('express'),
   crypto = require('crypto'),
   passport = require('passport'),
   mom = require('moment'),
-  q = require('q'),
-  Request = mongoose.model('Request');
+  q = require('q');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -21,26 +20,33 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/', // redirect to the secure profile section
+		successRedirect : '/home_admin', // redirect to the secure profile section
 		failureRedirect : '/login', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
-	}));
+	}), function(req, res, next){
+		next();
+	});
 
 	app.get('/signup', function(req, res) {
 
-		// render the page and pass in any flash data if it exists
 		res.render('signup.swig', { message: "ok" });
 	});
 
-	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/', // redirect to the secure profile section
+	app.post('/signup', passport.authenticate('local_signup', {
+		successRedirect : '/', 
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
-	}));
+	}), function(req, res){
+		console.log(JSON.stringify(req));
+	});
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.redirect('/');
+		res.redirect('/login');
+	});
+
+	app.get('/home_admin', isLoggedIn, function(req, res){
+		console.log(req.user.username)
+		//req.locals.username = req.user.username;
+		res.render('home_admin.swig', {'username': req.user.username});
 	});
 };
 
@@ -50,5 +56,5 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	res.redirect('/');
+	res.redirect('/login');
 }

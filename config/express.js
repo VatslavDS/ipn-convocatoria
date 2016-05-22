@@ -48,6 +48,8 @@ module.exports = function(app, config) {
 
 
   app.use(compress());
+  app.use(flash());
+  
 
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());

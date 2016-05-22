@@ -1,5 +1,7 @@
 var LocalStrategy  = require('passport-local').Strategy;
-var User = require('../app/models/user');
+var mongoose = require('mongoose');
+var User = mongoose.model('UserIPN');
+
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -16,33 +18,32 @@ module.exports = function(passport) {
         });
     });
 
-    passport.use('local-signup', new LocalStrategy({
-        usernameField : 'email',
-        passwordField : 'password',
+    passport.use('local_signup', new LocalStrategy({
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) {
-
-        User.findOne({ 'local.email' :  email }, function(err, user) {
-            if (err)
+    function(req, username, password, done) {
+        User.findOne({"username": username}, function(err, user) {
+            if (err){
+		console.log("El error fue: " + err);
                 return done(err);
-
-            // check to see if theres already a user with that email
-            if (user) {
+	    } else if (user) {
+		console.log("El user  fue: " + user);
                 return done(null, false, 'signupMessage', 'That email is already taken.');
             } else {
 
 				// if there is no user with that email
                 // create the user
                 var newUser  = new User();
-
-                newUser.local.email    = email;
-                newUser.local.password = newUser.generateHash(password); 
+		console.log("El user "+ newUser);
+                newUser.username = username;
+                newUser.password = newUser.generateHash(password); 
 
 				// save the user
                 newUser.save(function(err) {
-                    if (err)
+                    if (err){
+            		console.log("El error fue: " + err);
                         throw err;
+		    }
                     return done(null, newUser);
                 });
             }
@@ -52,23 +53,21 @@ module.exports = function(passport) {
     }));
 
     passport.use('local-login', new LocalStrategy({
-        usernameField : 'email',
-        passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) { // callback with email and password from our form
-
-        User.findOne({ 'local.email' :  email }, function(err, user) {
-            if (err)
+    function(req, username, password, done) { // callback with email and password from our form
+        User.findOne({"username": username}, function(err, user) {
+            if (err) {
+		console.log('Error ' + err);
                 return done(err);
-
-            if (!user)
+	   }else if (!user) {
+		console.log('No User');
                 return done(null, false, 'loginMessage', 'No user found.'); // req.flash is the way to set flashdata using connect-flash
-
-            if (!user.validPassword(password))
-
-            return done(null, user);
-        });
+	   } else if (!user.validPassword(password)){
+		console.log('Invalid password');
+	   }
+	    return done(null, user);
+	});
 
     }));
 
