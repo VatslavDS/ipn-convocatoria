@@ -6,12 +6,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
+var passport = require('passport'); 
 var methodOverride = require('method-override');
 var swig = require('swig');
-var  multer = require('multer');
+var session = require('express-session');
+var flash  = require('connect-flash');
+var multer = require('multer');
+require('./passport')(passport); // pass passport for configuration
 
 
 module.exports = function(app, config) {
+
+	
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -24,6 +30,8 @@ module.exports = function(app, config) {
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'swig');
 
+
+  
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
@@ -31,6 +39,14 @@ module.exports = function(app, config) {
     extended: true
   }));
   app.use(cookieParser());
+
+  //Passport y middleware para utilizar el login
+  app.use(session({secret: 'IPN'}));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+
+
   app.use(compress());
 
   app.use(express.static(config.root + '/public'));
@@ -38,8 +54,9 @@ module.exports = function(app, config) {
 
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {
-    require(controller)(app);
+    require(controller)(app, passport);
   });
+  
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
