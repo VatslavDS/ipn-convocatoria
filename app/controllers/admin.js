@@ -7,7 +7,9 @@ var express = require('express'),
   mime = require('mime'),
   crypto = require('crypto'),
   passport = require('passport'),
+  Request = mongoose.model('Request');
   mom = require('moment'),
+  datatablesQuery = require('datatables-query'),
   q = require('q');
 
 // app/routes.js
@@ -44,10 +46,34 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/home_admin', isLoggedIn, function(req, res){
-		console.log(req.user.username)
-		//req.locals.username = req.user.username;
-		res.render('home_admin.swig', {'username': req.user.username});
+		res.locals.username = req.user.username;
+		res.render('home_admin.swig');
 	});
+
+	app.post('/home_admin', isLoggedIn, function(req, res){
+                var query = datatablesQuery(Request);
+		var body = req.body;
+		query.run(body).then(function(data){
+		    res.json(data);
+		}, function(err){
+		    console.log(err);
+		    res.status(500).json(err);
+		});
+	});
+
+	app.get('/proyecto/:id', isLoggedIn, function(req, res){
+		var id = req.params.id;
+		Request.findOne({"_id": id}, function(err, doc){
+		    if(err){
+			res.status(500).json(err);
+		    } else {
+			res.locals.proyecto = doc;
+			res.render('proyecto.swig');
+		    }
+		});
+	});
+
+
 };
 
 // route middleware to make sure
