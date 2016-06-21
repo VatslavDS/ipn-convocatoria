@@ -1,6 +1,7 @@
 {% extends 'layout.swig' %}
 
 {% block content %}
+  <p><a href="/logout">Logout</a></p>
   <h1>{{ username }}</h1>
   <table id="proyectos" class="display" cellspacing="0" width="100%">
 
@@ -32,7 +33,7 @@
 	    {"data": "eje_tematico"},
 	    {"data": "resumen"}
 	]
-      });	
+      });
   });
   </script>
 {% endblock %}

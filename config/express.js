@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
-var passport = require('passport'); 
+var passport = require('passport');
 var methodOverride = require('method-override');
 var swig = require('swig');
 var session = require('express-session');
@@ -17,11 +17,11 @@ require('./passport')(passport); // pass passport for configuration
 
 module.exports = function(app, config) {
 
-	
+
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
-  
+
   app.engine('swig', swig.renderFile);
   if(env == 'development'){
     app.set('view cache', false);
@@ -31,7 +31,7 @@ module.exports = function(app, config) {
   app.set('view engine', 'swig');
 
 
-  
+
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
@@ -44,12 +44,12 @@ module.exports = function(app, config) {
   app.use(session({secret: 'IPN'}));
   app.use(passport.initialize());
   app.use(passport.session());
-  
+
 
 
   app.use(compress());
   app.use(flash());
-  
+
 
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
@@ -58,14 +58,14 @@ module.exports = function(app, config) {
   controllers.forEach(function (controller) {
     require(controller)(app, passport);
   });
-  
+
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
   });
-  
+
   if(app.get('env') === 'development'){
     app.use(function (err, req, res, next) {
       res.status(err.status || 500);

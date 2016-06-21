@@ -32,7 +32,7 @@ var storage = multer.diskStorage({
       });
     }
   });
-var upload = multer({ storage : storage }).fields([{name : "comprobante1"}, {name: "comprobante2"}, {name: "comprobante3"}, {name: "archivo_proyecto"}]); 
+var upload = multer({ storage : storage }).fields([{name : "comprobante1"}, {name: "comprobante2"}, {name: "comprobante3"}, {name: "archivo_proyecto"}]);
 
 //[{name : "comprobante1"}, {name: "omprobante2"}, {name: "comprobante3"}, {name: "archivo_proyecto"}]
 module.exports = function (app) {
@@ -40,16 +40,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-    Request.find(function(err, docs) {
-	    if(err) res.send("ok");
-	    res.render('formulario_final', {
-                title: 'Generator-Express MVC', requests : docs		
-        });
-    });
-});
-
-router.get('/test', function(req, res, next) {
-    res.render('test', {data: "hi"});
+    res.render('formulario_final');
 });
 
 
@@ -65,16 +56,15 @@ router.post('/form-uno', multer({storage: storage}).any(), function(req, res, ne
 	}
     }
 
-    console.log(final_references);
     function saveFile(req, res) {
-	var deferred = q.defer();		
+	var deferred = q.defer();
 	upload(req, res, function(err) {
 	    if(err) {
 		    deferred.reject(err)
 	        } else {
             	    deferred.resolve();
 		}
-	    
+
 	});
 	return deferred.promise;
     };
@@ -115,7 +105,7 @@ router.post('/form-uno', multer({storage: storage}).any(), function(req, res, ne
 		}],
 		"url_anexo": req.body.anexo
 		};
-	var request = new Request(proyecto); 
+	var request = new Request(proyecto);
 
 	request.save(function(err, doc){
 		if(err) {console.log(err); return res.send("Error");}
@@ -125,6 +115,3 @@ router.post('/form-uno', multer({storage: storage}).any(), function(req, res, ne
 	    console.log(err);
     });
 });
-
-
-

@@ -9,7 +9,7 @@
 
 <!-- HEADER TITULO !-->
 <div id="header_title">
-	<span id="head_title"><img src="img/img-head-title.png" id="head_title"></span>	
+	<span id="head_title"><img src="img/img-head-title.png" id="head_title"></span>
 </div>
 
 
@@ -32,7 +32,7 @@
 <b>Nombre del Proyecto:</b><br>
 
 <div id="error_1">* No se permiten caracteres especiales en el nombre de proyecto.</div>
-<input type="text" name="nombre_del_proyecto" id="nombre_del_proyecto" onKeyDown="validar_combo_1();" 
+<input type="text" name="nombre_del_proyecto" id="nombre_del_proyecto" onKeyDown="validar_combo_1();"
  class="input_text" size="50" maxlength="50" onKeyUp="validar_combo_1();"  required/><br>
 <b>Eje Temático:</b><br>
 <select name="eje_tematico" id="eje_tematico" onChange="validar_combo_1();" required>
@@ -73,7 +73,7 @@
 <div id="contenedor_combo">
 <div class="contenedor_campos">
 
-{% include 'combo-participantes.swig' %}                                                             
+{% include 'combo-participantes.swig' %}
 
 
 
@@ -89,7 +89,7 @@
 </div>
 </div>
 
- 
+
 <!-- CONTENEDOR GERENAL 3 !-->
 <div id="contenedor_3">
 <!-- CONTENEDOR DE SUBTITULO !-->
@@ -108,9 +108,9 @@
 <div id="contenedor_combo">
 <div class="contenedor_campos">
 
-<b>Máximo 2 cuartillas.</b>  Se deberá indicar claramente cuál fue el problema que se pretende resolver, 
-el desarrollo que se debe seguir, los principales resultados que se esperan obtener obtenidos y 
-las principales aportaciones de la investigación. Este resumen se utilizará para difundir 
+<b>Máximo 2 cuartillas.</b>  Se deberá indicar claramente cuál fue el problema que se pretende resolver,
+el desarrollo que se debe seguir, los principales resultados que se esperan obtener obtenidos y
+las principales aportaciones de la investigación. Este resumen se utilizará para difundir
 los proyectos ganadores en diversos medios.<br>
 <div id="error_8">* No se permiten caracteres especiales en el resumen.</div>
 <div id="textarea"><textarea name="resumen" rows="8" id="resumen"
@@ -180,7 +180,7 @@ los proyectos ganadores en diversos medios.<br>
   </div>
   <input type="button" value="+" onClick="addInput('dynamicInput');">
   </li>
-</ol>  
+</ol>
 <b>Subir Archivo:</b>
 <input type="file" id="archivo_proyecto" required><br>
 <button id="subir_archivo" onClick="validar_combo_4()">Subir</button><br><br>
@@ -246,4 +246,4 @@ URL:
 
 
 </form>
-{% endblock %} 
+{% endblock %}

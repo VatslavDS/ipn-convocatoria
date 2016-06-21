@@ -7,7 +7,7 @@ var express = require('express'),
   mime = require('mime'),
   crypto = require('crypto'),
   passport = require('passport'),
-  Request = mongoose.model('Request');
+  Request = mongoose.model('Request'),
   mom = require('moment'),
   datatablesQuery = require('datatables-query'),
   q = require('q');
@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/signup', passport.authenticate('local_signup', {
-		successRedirect : '/', 
+		successRedirect : '/home_admin',
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
 	}), function(req, res){
 		console.log(JSON.stringify(req));
